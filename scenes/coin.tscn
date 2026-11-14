@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://crbh1qfx3w3xd"]
 
-[ext_resource type="Script" uid="uid://jdhnnogf851k" path="res://coin.gd" id="1_0t63x"]
-[ext_resource type="Texture2D" uid="uid://dxao4n3hp6wlh" path="res://尖刺/caverns-files-web/coin_sheet.png" id="2_v7riw"]
+[ext_resource type="Script" uid="uid://jdhnnogf851k" path="res://scripts/coin.gd" id="1_0t63x"]
+[ext_resource type="Texture2D" uid="uid://dxao4n3hp6wlh" path="res://assets/尖刺/caverns-files-web/coin_sheet.png" id="2_v7riw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e48y"]
 atlas = ExtResource("2_v7riw")

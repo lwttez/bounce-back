@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://b3c1iokqppghl"]
 
-[ext_resource type="Script" uid="uid://jypkov3wyynt" path="res://node_2d.gd" id="1_epypp"]
-[ext_resource type="Texture2D" uid="uid://duvm1xfilc57g" path="res://尖刺/caverns-files-web/Caverns-preview.jpg" id="1_wtcfe"]
-[ext_resource type="PackedScene" uid="uid://crbh1qfx3w3xd" path="res://coin.tscn" id="2_0e48y"]
-[ext_resource type="PackedScene" uid="uid://co4rqqbo5yohp" path="res://spring.tscn" id="4_0hol4"]
+[ext_resource type="Script" uid="uid://jypkov3wyynt" path="res://scripts/main.gd" id="1_epypp"]
+[ext_resource type="Texture2D" uid="uid://duvm1xfilc57g" path="res://assets/尖刺/caverns-files-web/Caverns-preview.jpg" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://crbh1qfx3w3xd" path="res://scenes/coin.tscn" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://co4rqqbo5yohp" path="res://scenes/spring.tscn" id="4_0hol4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_wtcfe")
