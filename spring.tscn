@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://co4rqqbo5yohp"]
+
+[ext_resource type="Script" uid="uid://stfqma5twt6x" path="res://spring.gd" id="1_boyml"]
+[ext_resource type="Texture2D" uid="uid://btdtmmuijf3nv" path="res://尖刺/跳板-removebg-preview.png" id="2_hpppm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
+atlas = ExtResource("2_hpppm")
+region = Rect2(0, 0, 94, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
+atlas = ExtResource("2_hpppm")
+region = Rect2(94, 0, 94, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
+atlas = ExtResource("2_hpppm")
+region = Rect2(188, 0, 94, 81)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mm1bc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}],
+"loop": 0,
+"name": &"bounce",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
+size = Vector2(71, 13)
+
+[node name="Spring" type="Area2D" unique_id=1427363360]
+script = ExtResource("1_boyml")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1258398456]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_mm1bc")
+animation = &"bounce"
+frame = 2
+frame_progress = 0.31087217
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912798691]
+position = Vector2(-3.5, -22.5)
+shape = SubResource("RectangleShape2D_4kxuq")
