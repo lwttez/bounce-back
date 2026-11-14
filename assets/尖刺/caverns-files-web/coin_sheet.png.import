@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxao4n3hp6wlh"
-path="res://.godot/imported/coin_sheet.png-38d94ca9ca25d48cfd8d6c8eba06f888.ctex"
+path="res://.godot/imported/coin_sheet.png-c50d2e29ed3a66156d1bb8efdeb94543.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/caverns-files-web/coin_sheet.png"
-dest_files=["res://.godot/imported/coin_sheet.png-38d94ca9ca25d48cfd8d6c8eba06f888.ctex"]
+source_file="res://assets/尖刺/caverns-files-web/coin_sheet.png"
+dest_files=["res://.godot/imported/coin_sheet.png-c50d2e29ed3a66156d1bb8efdeb94543.ctex"]
 
 [params]
 

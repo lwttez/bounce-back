@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnmesc6c2yx4q"
-path="res://.godot/imported/0007.png-5db07fd6945b00f95edb930701637f30.ctex"
+path="res://.godot/imported/0007.png-cfc302ab85b2bcaf680ab344ddc14397.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/single_renders/spike_frozen_no_shadow_64x32/0007.png"
-dest_files=["res://.godot/imported/0007.png-5db07fd6945b00f95edb930701637f30.ctex"]
+source_file="res://assets/尖刺/single_renders/spike_frozen_no_shadow_64x32/0007.png"
+dest_files=["res://.godot/imported/0007.png-cfc302ab85b2bcaf680ab344ddc14397.ctex"]
 
 [params]
 

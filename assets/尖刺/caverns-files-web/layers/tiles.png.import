@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvij0ijbh5ntc"
-path="res://.godot/imported/tiles.png-0e47cd1f97f867e2fbfd595b0c8cefbc.ctex"
+path="res://.godot/imported/tiles.png-fd9b96bd4cb4a2e8ebac810b7d36d63a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/caverns-files-web/layers/tiles.png"
-dest_files=["res://.godot/imported/tiles.png-0e47cd1f97f867e2fbfd595b0c8cefbc.ctex"]
+source_file="res://assets/尖刺/caverns-files-web/layers/tiles.png"
+dest_files=["res://.godot/imported/tiles.png-fd9b96bd4cb4a2e8ebac810b7d36d63a.ctex"]
 
 [params]
 

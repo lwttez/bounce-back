@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbt2x7x42kta"
-path="res://.godot/imported/0008.png-643e7a3e3f1e7a5a27064b895cc8408b.ctex"
+path="res://.godot/imported/0008.png-7f72749683bcf428f8cd523fe8e663bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/single_renders/spike_grass_no_shadow_128x64/0008.png"
-dest_files=["res://.godot/imported/0008.png-643e7a3e3f1e7a5a27064b895cc8408b.ctex"]
+source_file="res://assets/尖刺/single_renders/spike_grass_no_shadow_128x64/0008.png"
+dest_files=["res://.godot/imported/0008.png-7f72749683bcf428f8cd523fe8e663bf.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf2uuq0wswlq2"
-path="res://.godot/imported/0005.png-7652151f8a7ac52ea68fbb9fa51b4113.ctex"
+path="res://.godot/imported/0005.png-3d672d99c70ca6e19806b10284bf9390.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/single_renders/spike_cave_no_shadow_128x64/0005.png"
-dest_files=["res://.godot/imported/0005.png-7652151f8a7ac52ea68fbb9fa51b4113.ctex"]
+source_file="res://assets/尖刺/single_renders/spike_cave_no_shadow_128x64/0005.png"
+dest_files=["res://.godot/imported/0005.png-3d672d99c70ca6e19806b10284bf9390.ctex"]
 
 [params]
 

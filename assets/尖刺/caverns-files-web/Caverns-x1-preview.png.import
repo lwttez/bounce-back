@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boxc4vjaqrojq"
-path="res://.godot/imported/Caverns-x1-preview.png-b7a9be85a0f630d0364849cb7b7c3bf2.ctex"
+path="res://.godot/imported/Caverns-x1-preview.png-f4b418dffa43fbe7500eb7f27284d91a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/caverns-files-web/Caverns-x1-preview.png"
-dest_files=["res://.godot/imported/Caverns-x1-preview.png-b7a9be85a0f630d0364849cb7b7c3bf2.ctex"]
+source_file="res://assets/尖刺/caverns-files-web/Caverns-x1-preview.png"
+dest_files=["res://.godot/imported/Caverns-x1-preview.png-f4b418dffa43fbe7500eb7f27284d91a.ctex"]
 
 [params]
 

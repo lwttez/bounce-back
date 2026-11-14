@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcqmjq6xfxsg8"
-path="res://.godot/imported/back-walls.png-059f5a7a6a734b990f3c518b336f3be7.ctex"
+path="res://.godot/imported/back-walls.png-2d10204e20bf8db3be6a4f7eb96cc12a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://尖刺/caverns-files-web/layers/back-walls.png"
-dest_files=["res://.godot/imported/back-walls.png-059f5a7a6a734b990f3c518b336f3be7.ctex"]
+source_file="res://assets/尖刺/caverns-files-web/layers/back-walls.png"
+dest_files=["res://.godot/imported/back-walls.png-2d10204e20bf8db3be6a4f7eb96cc12a.ctex"]
 
 [params]
 
