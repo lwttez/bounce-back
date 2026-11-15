@@ -13,17 +13,14 @@ extends Node2D
 @export var floor_y := 250.0
 @export var start_pos := Vector2(30, 250)
 @export var goal_pos := Vector2(370, 250)
+@onready var game_over_screen: CanvasLayer = $GameOver
+
 
 var placed: Array[Vector2] = []
 var player: CharacterBody2D
 var finished := false
 var spike_nodes: Array[Node] = []
-var heart_textures = [
-	preload("res://assets/UI/零命.png"),
-	preload("res://assets/UI/一顆愛心.png"),
-	preload("res://assets/UI/兩顆愛心.png"),
-	preload("res://assets/UI/三顆愛心.png"),
-]
+var heart_textures = [preload("res://assets/UI/零命.png"), preload("res://assets/UI/一顆愛心.png"), preload("res://assets/UI/兩顆愛心.png"), preload("res://assets/UI/三顆愛心.png")]
 
 func _ready() -> void:
 	randomize()
@@ -39,7 +36,12 @@ func _ready() -> void:
 	_make_start_and_goal()
 	_make_player()
 	add_child(preload("res://scripts/placer.gd").new())
-
+	var slime = get_tree().get_first_node_in_group("player")
+	if player != null:
+		player.game_over.connect(_on_game_over)
+	else:
+		push_warning("No node in group 'player' was found!")
+	$GameOver/RestartButton.pressed.connect(_on_restart_pressed)
 
 func _make_walls() -> void:
 	var body := StaticBody2D.new()
@@ -59,7 +61,6 @@ func _make_start_and_goal() -> void:
 	start.set_script(preload("res://scripts/start_point.gd"))
 	start.position = start_pos
 	add_child(start)
-
 	var goal := Area2D.new()
 	goal.set_script(preload("res://scripts/goal.gd"))
 	goal.position = goal_pos
@@ -76,13 +77,20 @@ func _make_player() -> void:
 		foot = 5.0
 	player.set("start_position", start_pos)
 	player.position = start_pos + Vector2(0, -foot)
-	if player.has_signal("died"):
-		player.connect("died", _on_player_died)
+#	if player.has_signal("died"):
+#		player.connect("died", _on_player_died)
 	add_child(player)
 
-func _on_player_died() -> void:
-	if respawn_spikes_on_death:
-		call_deferred("_respawn_spikes")
+func _on_game_over() -> void:
+	game_over_screen.show()
+	get_tree().paused = true
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()
+
+#func _on_player_died() -> void:
+#	if respawn_spikes_on_death:
+#		call_deferred("_respawn_spikes")
 
 func _respawn_spikes() -> void:
 	for s in spike_nodes:

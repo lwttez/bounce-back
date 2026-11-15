@@ -1,13 +1,19 @@
 extends CharacterBody2D
 signal died
+signal game_over
 
 @export var speed: float = 150
 @export var jump_velocity: float = -400
 @export var foot_offset: float = 5.0
 
+
 var start_position := Vector2.ZERO
-var lives = 3
+var lives: int = 3
+var is_dead: bool = false
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _ready() -> void:
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -37,15 +43,29 @@ func _physics_process(delta: float) -> void:
 		$walk.stop()
 		$LowWalkSound.stop()
 
+#func die() -> void:
+#	lives -= 1
+#	if lives <= 0:
+#		get_tree().call_deferred("reload_current_scene")
+#		$HurtSound.play()
+#		died.emit()
+#		call_deferred("_respawn") 
+	
 func die() -> void:
+	if is_dead:
+		return
+	is_dead = true
 	lives -= 1
-	if lives <= 0:
-		get_tree().call_deferred("reload_current_scene")
 	$HurtSound.play()
 	died.emit()
+	if lives <= 0:
+		game_over.emit()
+		hide()
+		set_physics_process(false)
+		return
 	call_deferred("_respawn")
 
 func _respawn() -> void:
 	global_position = start_position + Vector2(0, -foot_offset)
 	velocity = Vector2.ZERO
-	
+	is_dead = false
