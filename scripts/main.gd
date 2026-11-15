@@ -3,10 +3,9 @@ extends Node2D
 @export var coin_scene: PackedScene
 @export var spring_scene: PackedScene
 @export var coin_count := 8
-@export var spring_count := 0
 @export var area := Rect2(30, 30, 320, 200)
 @export var min_gap := 50.0
-@export var spike_count := 3
+@export var spike_count := 5
 @export var spike_area := Rect2(50, 40, 300, 190)
 @export var spike_min_gap := 70.0
 @export var spike_clear := 40.0
@@ -20,7 +19,6 @@ var player: CharacterBody2D
 var finished := false
 var spike_nodes: Array[Node] = []
 
-
 func _ready() -> void:
 	randomize()
 	var cam := Camera2D.new()
@@ -31,7 +29,6 @@ func _ready() -> void:
 	placed.append(start_pos)
 	placed.append(goal_pos)
 	_spawn(coin_scene, coin_count)
-	_spawn(spring_scene, spring_count)
 	_spawn_spikes()
 	_make_start_and_goal()
 	_make_player()
@@ -41,11 +38,8 @@ func _ready() -> void:
 func _make_walls() -> void:
 	var body := StaticBody2D.new()
 	add_child(body)
-	_add_wall(body, Vector2(200, floor_y + 25), Vector2(440, 50))
 	_add_wall(body, Vector2(-10, 150), Vector2(20, 400))
 	_add_wall(body, Vector2(410, 150), Vector2(20, 400))
-	_add_wall(body, Vector2(200, -10), Vector2(440, 20))
-
 func _add_wall(body: StaticBody2D, pos: Vector2, size: Vector2) -> void:
 	var cs := CollisionShape2D.new()
 	var shape := RectangleShape2D.new()
