@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://crbh1qfx3w3xd" path="res://scenes/coin.tscn" id="2_0e48y"]
 [ext_resource type="PackedScene" uid="uid://co4rqqbo5yohp" path="res://scenes/spring.tscn" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://bnlorw4i65m8j" path="res://assets/UI/三顆愛心.png" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bhthe4cmu7isy" path="res://assets/UI/開始界面.png" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://dapxk7myjel6j" path="res://assets/UI/勝利界面.png" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://ctaj41voqs1lm" path="res://assets/UI/失敗界面.png" id="8_choun"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_wtcfe")
@@ -610,6 +613,7 @@ tile_map_data = PackedByteArray("AADu//b/AAAAAAMAAADu//f/AAAAAAQAAADu//j/AAAAAAU
 tile_set = SubResource("TileSet_4kxuq")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=223526115]
+layer = 100
 
 [node name="Hearts" type="TextureRect" parent="UI" unique_id=1377418090]
 offset_left = 10.0
@@ -619,3 +623,42 @@ offset_bottom = 80.0
 mouse_filter = 2
 texture = ExtResource("5_tbgi4")
 expand_mode = 1
+
+[node name="StartScreen" type="TextureRect" parent="UI" unique_id=1075983072]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_tipki")
+expand_mode = 1
+
+[node name="WinScreen" type="TextureRect" parent="UI" unique_id=447987847]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_85g3d")
+expand_mode = 1
+
+[node name="LoseScreen" type="TextureRect" parent="UI" unique_id=1951516936]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_choun")
+expand_mode = 1
+
+[node name="StartButton" type="Button" parent="UI" unique_id=2094223960]
+modulate = Color(inf, inf, inf, 0)
+offset_left = 200.0
+offset_top = 385.0
+offset_right = 600.0
+offset_bottom = 525.0

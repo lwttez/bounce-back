@@ -17,6 +17,8 @@ extends Node2D
 var placed: Array[Vector2] = []
 var player: CharacterBody2D
 var finished := false
+var started := false
+var placer_node
 var spike_nodes: Array[Node] = []
 var heart_textures = [
 	preload("res://assets/UI/零命.png"),
@@ -38,7 +40,11 @@ func _ready() -> void:
 	_spawn_spikes()
 	_make_start_and_goal()
 	_make_player()
-	add_child(preload("res://scripts/placer.gd").new())
+	placer_node = preload("res://scripts/placer.gd").new()
+	add_child(placer_node)
+	placer_node.process_mode = Node.PROCESS_MODE_DISABLED
+	player.set_physics_process(false)
+	$UI/StartButton.pressed.connect(start_game)
 
 
 func _make_walls() -> void:
@@ -93,9 +99,11 @@ func _respawn_spikes() -> void:
 
 
 func _on_goal_reached() -> void:
+	$UI/WinScreen.visible = true
 	if finished:
 		return
 	finished = true
+	$UI/WinScreen.visible = true
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	var lab := Label.new()
@@ -169,8 +177,19 @@ func _spawn(scene: PackedScene, count: int) -> void:
 		made += 1
 		
 func _process(_delta):
+	if Input.is_key_pressed(KEY_ENTER):
+		start_game()
 	if player == null:
 		return
 	var n = player.get("lives")
 	if n != null:
 		$UI/Hearts.texture = heart_textures[clampi(n, 0, 3)]
+		
+func start_game() -> void:
+	placer_node.process_mode = Node.PROCESS_MODE_INHERIT
+	if started:
+		return
+	started = true
+	$UI/StartScreen.visible = false
+	$UI/StartButton.visible = false
+	player.set_physics_process(true)
