@@ -3,30 +3,7 @@
 [ext_resource type="Script" uid="uid://dnwlg8kmlh2o8" path="res://scripts/spike.gd" id="1_spike"]
 [ext_resource type="Texture2D" uid="uid://b5pgkwpwwpk3o" path="res://assets/spike_bar.png" id="2_tex"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7a7y0"]
-texture = ExtResource("2_tex")
-texture_region_size = Vector2i(60, 60)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, 10, 10, 4, 28, -30, 30, -30, 30.5, 30, -30, 30, -30, 28, 2, 10, 8, 12)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-28, -30, -10, 4, 8, -30, 12, -30, 30, 4, 30, 30, -30, 30, -30, -30)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(30, -30, 28, -30, 12, 2, 10, 4, -8, -30, -12, -30, -30, 6, -30, 30, 30, 30)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, -26, -28, -12, 0, -10, 8, -10, 12, -6, 10, 30, 28, 30, 30, -30, 30)
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_wwxi3"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_7a7y0")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_spike"]
-size = Vector2(176, 88)
-
-[node name="Spike" type="Area2D" unique_id=31544066]
+[node name="Spike" type="Area2D" unique_id=1666351717]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_spike")
 
@@ -34,9 +11,7 @@ script = ExtResource("1_spike")
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_tex")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=198015116]
-tile_set = SubResource("TileSet_wwxi3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1718862135]
-visible = false
-shape = SubResource("RectangleShape2D_spike")
+[node name="TileMapLayer" type="CollisionPolygon2D" parent="." unique_id=1961689001]
+position = Vector2(0, -1.9073486e-06)
+scale = Vector2(1, 1.828125)
+polygon = PackedVector2Array(46.973495, -24.656158, 43.89968, -24.493664, 31.807547, -11.255086, 29.163229, -10.999826, 16.435226, -24.575375, 13.8125, -24.547009, 1.5148315, -11.486875, -1.1519852, -11.208581, -13.36001, -24.450762, -16.316715, -24.415602, -29.55391, -11.378641, -31.100222, -11.1604395, -43.634064, -24.450762, -46.333652, -24.450762, -60, -8.752136, -61.024593, -7.5150995, -65.54965, -7.4764233, -89.87173, -0.5921777, -89.659615, 0.6067636, -63.07502, 8.148493, -59.115623, 8.496575, -58.65436, 11.477662, -47.166683, 24.585598, -43.631496, 24.546925, -30.975533, 10.585053, -29.420052, 10.546378, -17.188309, 24.392221, -13.087505, 24.469574, -0.8557625, 10.507702, 0.9118271, 10.585053, 13.002165, 24.508247, 16.46665, 24.430897, 28.839796, 10.236974, 30.678095, 10.275649, 42.556313, 24.39222, 46.727833, 24.430895, 60.090836, 10.082273, 59.949425, 7.8004155, 65.88854, 7.7617397, 89.64499, 0.993521, 89.57428, -0.5535096, 64.262344, -7.9405355, 59.030277, -8.675372, 59.030277, -11.227957)
