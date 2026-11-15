@@ -6,13 +6,11 @@ extends Node2D
 @export var spring_count := 0
 @export var area := Rect2(30, 30, 320, 200)
 @export var min_gap := 50.0
-
 @export var spike_count := 3
 @export var spike_area := Rect2(50, 40, 300, 190)
 @export var spike_min_gap := 70.0
 @export var spike_clear := 40.0
 @export var respawn_spikes_on_death := true
-
 @export var floor_y := 250.0
 @export var start_pos := Vector2(30, 250)
 @export var goal_pos := Vector2(370, 250)
@@ -29,7 +27,6 @@ func _ready() -> void:
 	cam.position = Vector2(200, 150)
 	cam.zoom = Vector2(2, 2)
 	add_child(cam)
-
 	_make_walls()
 	placed.append(start_pos)
 	placed.append(goal_pos)

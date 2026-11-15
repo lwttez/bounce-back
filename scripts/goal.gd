@@ -10,7 +10,7 @@ func _ready() -> void:
 	cs.position = Vector2(0, -20)
 	add_child(cs)
 	var lab := Label.new()
-	lab.text = "終點"
+	lab.text = "End"
 	lab.add_theme_font_size_override("font_size", 10)
 	lab.add_theme_color_override("font_outline_color", Color.BLACK)
 	lab.add_theme_constant_override("outline_size", 3)
