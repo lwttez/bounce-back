@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://co4rqqbo5yohp" path="res://scenes/spring.tscn" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://bnlorw4i65m8j" path="res://assets/UI/三顆愛心.png" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://ctaj41voqs1lm" path="res://assets/UI/失敗界面.png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bhthe4cmu7isy" path="res://assets/UI/開始界面.png" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://dapxk7myjel6j" path="res://assets/UI/勝利界面.png" id="7_85g3d"]
+[ext_resource type="AudioStream" uid="uid://be7h56ja1ollr" path="res://audio/win.mp3" id="70_o7pr5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_wtcfe")
@@ -611,6 +614,8 @@ tile_map_data = PackedByteArray("AADu//b/AAAAAAMAAADu//f/AAAAAAQAAADu//j/AAAAAAU
 tile_set = SubResource("TileSet_4kxuq")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=223526115]
+process_mode = 3
+layer = 100
 
 [node name="Hearts" type="TextureRect" parent="UI" unique_id=1377418090]
 offset_left = 674.0
@@ -621,6 +626,30 @@ mouse_filter = 2
 texture = ExtResource("5_tbgi4")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="StartScreen" type="TextureRect" parent="UI" unique_id=2141274084]
+offset_right = 800.0
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("6_tipki")
+expand_mode = 1
+
+[node name="WinScreen" type="TextureRect" parent="UI" unique_id=1547291025]
+visible = false
+offset_right = 800.0
+offset_bottom = 600.0
+texture = ExtResource("7_85g3d")
+expand_mode = 1
+
+[node name="StartButton" type="Button" parent="UI" unique_id=1147792261]
+modulate = Color(1, 1, 1, 0)
+offset_left = 200.0
+offset_top = 386.0
+offset_right = 601.0
+offset_bottom = 528.0
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="UI" unique_id=267809473]
+stream = ExtResource("70_o7pr5")
 
 [node name="GameOver" type="CanvasLayer" parent="." unique_id=1066966971]
 process_mode = 3

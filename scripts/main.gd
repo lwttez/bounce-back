@@ -2,7 +2,7 @@ extends Node2D
 
 @export var coin_scene: PackedScene
 @export var spring_scene: PackedScene
-@export var coin_count := 8
+@export var coin_count := 5
 @export var area := Rect2(30, 30, 320, 200)
 @export var min_gap := 50.0
 @export var spike_count := 5
@@ -15,15 +15,21 @@ extends Node2D
 @export var goal_pos := Vector2(370, 250)
 @onready var game_over_screen: CanvasLayer = $GameOver
 @onready var restart_button: Button = $GameOver/RestartButton
+@onready var win_screen: TextureRect = $UI/WinScreen
 
 
 var placed: Array[Vector2] = []
 var player: CharacterBody2D
 var finished := false
+var started := false
+var placer_node
 var spike_nodes: Array[Node] = []
 var heart_textures = [preload("res://assets/UI/零命.png"), preload("res://assets/UI/一顆愛心.png"), preload("res://assets/UI/兩顆愛心.png"), preload("res://assets/UI/三顆愛心.png")]
+var coins_remaining: int = 0
 
 func _ready() -> void:
+	game_over_screen.hide()
+	win_screen.hide()
 	randomize()
 	var cam := Camera2D.new()
 	cam.position = Vector2(200, 150)
@@ -36,9 +42,13 @@ func _ready() -> void:
 	_spawn_spikes()
 	_make_start_and_goal()
 	_make_player()
-	add_child(preload("res://scripts/placer.gd").new())
-	var slime = get_tree().get_first_node_in_group("player")
-	player.game_over.connect(_on_game_over)
+	placer_node = preload("res://scripts/placer.gd").new()
+	add_child(placer_node)
+	placer_node.process_mode = Node.PROCESS_MODE_DISABLED
+	player.set_physics_process(false)
+	$UI/StartButton.pressed.connect(start_game)
+	if player.has_signal("game_over"):
+		player.game_over.connect(_on_game_over)
 	restart_button.pressed.connect(_on_restart_pressed)
 
 func _make_walls() -> void:
@@ -99,24 +109,20 @@ func _respawn_spikes() -> void:
 	spike_nodes.clear()
 	_spawn_spikes()
 
-
 func _on_goal_reached() -> void:
 	if finished:
 		return
+	if get_tree().get_nodes_in_group("coins").size() > 0:
+		return
 	finished = true
-	var layer := CanvasLayer.new()
-	add_child(layer)
-	var lab := Label.new()
-	lab.text = "goal!"
-	lab.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	lab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lab.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	lab.add_theme_font_size_override("font_size", 48)
-	lab.add_theme_color_override("font_outline_color", Color.BLACK)
-	lab.add_theme_constant_override("outline_size", 10)
-	layer.add_child(lab)
-	await get_tree().create_timer(2.0).timeout
-	get_tree().reload_current_scene()
+	$UI/Hearts.hide()
+	for child in get_children():
+		if child is CanvasItem:
+			child.hide()
+	win_screen.show()
+	$UI/WinSound.play()
+	
+	get_tree().paused = true
 
 
 func _spawn_spikes() -> void:
@@ -173,8 +179,16 @@ func _spawn(scene: PackedScene, count: int) -> void:
 		placed.append(p)
 		var n := scene.instantiate()
 		n.position = p
+		if n.has_signal("collected"):
+			n.collected.connect(_on_coin_collected)
+			coins_remaining += 1
 		add_child(n)
 		made += 1
+
+
+
+func _on_coin_collected() -> void:
+	coins_remaining -= 1
 		
 func _process(_delta):
 	if player == null:
@@ -182,3 +196,12 @@ func _process(_delta):
 	var n = player.get("lives")
 	if n != null:
 		$UI/Hearts.texture = heart_textures[clampi(n, 0, 3)]
+		
+func start_game() -> void:
+	placer_node.process_mode = Node.PROCESS_MODE_INHERIT
+	if started:
+		return
+	started = true
+	$UI/StartScreen.visible = false
+	$UI/StartButton.visible = false
+	player.set_physics_process(true)
