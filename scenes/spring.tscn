@@ -1,42 +1,55 @@
 [gd_scene format=3 uid="uid://co4rqqbo5yohp"]
 
-[ext_resource type="Script" uid="uid://dnwlg8kmlh2o8" path="res://scripts/spike.gd" id="1_6vrsj"]
-[ext_resource type="Texture2D" uid="uid://b5pgkwpwwpk3o" path="res://assets/spike_bar.png" id="2_f6w1c"]
+[ext_resource type="Script" uid="uid://stfqma5twt6x" path="res://scripts/spring.gd" id="1_boyml"]
+[ext_resource type="Texture2D" uid="uid://btdtmmuijf3nv" path="res://assets/尖刺/跳板-removebg-preview.png" id="2_hpppm"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7a7y0"]
-texture = ExtResource("2_f6w1c")
-texture_region_size = Vector2i(60, 60)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(12, 10, 10, 4, 28, -30, 30, -30, 30.5, 30, -30, 30, -30, 28, 2, 10, 8, 12)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-28, -30, -10, 4, 8, -30, 12, -30, 30, 4, 30, 30, -30, 30, -30, -30)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(30, -30, 28, -30, 12, 2, 10, 4, -8, -30, -12, -30, -30, 6, -30, 30, 30, 30)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, -26, -28, -12, 0, -10, 8, -10, 12, -6, 10, 30, 28, 30, 30, -30, 30)
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
+atlas = ExtResource("2_hpppm")
+region = Rect2(0, 0, 94, 81)
 
-[sub_resource type="TileSet" id="TileSet_wwxi3"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_7a7y0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
+atlas = ExtResource("2_hpppm")
+region = Rect2(94, 0, 94, 81)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_spike"]
-size = Vector2(176, 88)
+[sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
+atlas = ExtResource("2_hpppm")
+region = Rect2(188, 0, 94, 81)
 
-[node name="Spike" type="Area2D" unique_id=31544066]
-scale = Vector2(0.25, 0.25)
-script = ExtResource("1_6vrsj")
+[sub_resource type="SpriteFrames" id="SpriteFrames_mm1bc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}],
+"loop": 0,
+"name": &"bounce",
+"speed": 12.0
+}]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459449381]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_f6w1c")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
+size = Vector2(71, 13)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=198015116]
-tile_set = SubResource("TileSet_wwxi3")
+[node name="Spring" type="Area2D" unique_id=1427363360]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_boyml")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1718862135]
-visible = false
-shape = SubResource("RectangleShape2D_spike")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1258398456]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_mm1bc")
+animation = &"bounce"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912798691]
+position = Vector2(2.3841858e-07, 13.333332)
+shape = SubResource("RectangleShape2D_4kxuq")
