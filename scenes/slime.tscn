@@ -343,4 +343,3 @@ stream = ExtResource("69_jvq7p")
 
 [node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=582500715]
 stream = ExtResource("70_npop4")
-volume_db = -0.8
