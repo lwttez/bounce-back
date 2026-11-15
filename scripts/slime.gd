@@ -48,3 +48,4 @@ func die() -> void:
 func _respawn() -> void:
 	global_position = start_position + Vector2(0, -foot_offset)
 	velocity = Vector2.ZERO
+	
