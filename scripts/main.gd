@@ -14,6 +14,7 @@ extends Node2D
 @export var start_pos := Vector2(30, 250)
 @export var goal_pos := Vector2(370, 250)
 @onready var game_over_screen: CanvasLayer = $GameOver
+@onready var restart_button: Button = $GameOver/RestartButton
 
 
 var placed: Array[Vector2] = []
@@ -37,11 +38,8 @@ func _ready() -> void:
 	_make_player()
 	add_child(preload("res://scripts/placer.gd").new())
 	var slime = get_tree().get_first_node_in_group("player")
-	if player != null:
-		player.game_over.connect(_on_game_over)
-	else:
-		push_warning("No node in group 'player' was found!")
-	$GameOver/RestartButton.pressed.connect(_on_restart_pressed)
+	player.game_over.connect(_on_game_over)
+	restart_button.pressed.connect(_on_restart_pressed)
 
 func _make_walls() -> void:
 	var body := StaticBody2D.new()
@@ -86,6 +84,8 @@ func _on_game_over() -> void:
 	get_tree().paused = true
 
 func _on_restart_pressed() -> void:
+	set_physics_process(true)
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 #func _on_player_died() -> void:

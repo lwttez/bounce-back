@@ -4,7 +4,7 @@ signal game_over
 
 @export var speed: float = 150
 @export var jump_velocity: float = -400
-@export var foot_offset: float = 5.0
+@export var foot_offset: float = 5
 
 
 var start_position := Vector2.ZERO

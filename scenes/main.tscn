@@ -623,6 +623,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="GameOver" type="CanvasLayer" parent="." unique_id=1066966971]
+process_mode = 3
 visible = false
 
 [node name="Lost" type="TextureRect" parent="GameOver" unique_id=1261410203]
@@ -632,5 +633,8 @@ texture = ExtResource("6_tefeu")
 expand_mode = 1
 
 [node name="RestartButton" type="Button" parent="GameOver" unique_id=549748439]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 498.0
+offset_top = 530.0
+offset_right = 800.0
+offset_bottom = 600.0
+text = "RESTART GAME"
