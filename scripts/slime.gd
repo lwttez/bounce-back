@@ -54,10 +54,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	if is_on_floor() and absf(velocity.x) > 10:
-		if not $walk.playing:
-			$walk.play()
+		var s = $LowWalkSound if lives == 1 else $WalkSound
+		if not s.playing:
+			s.play()
 		else:
-			$walk.stop()
+			$WalkSound.stop()
+			$LowWalkSound.stop()
 
 
 func die() -> void:
