@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://stfqma5twt6x" path="res://scripts/spring.gd" id="1_boyml"]
 [ext_resource type="Texture2D" uid="uid://btdtmmuijf3nv" path="res://assets/尖刺/跳板-removebg-preview.png" id="2_hpppm"]
+[ext_resource type="AudioStream" uid="uid://dtfosn1pul6r3" path="res://audio/SpringSound.mp3" id="3_f6w1c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
 atlas = ExtResource("2_hpppm")
@@ -53,3 +54,6 @@ animation = &"bounce"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912798691]
 position = Vector2(2.3841858e-07, 13.333332)
 shape = SubResource("RectangleShape2D_4kxuq")
+
+[node name="SpringSound" type="AudioStreamPlayer2D" parent="." unique_id=29184727]
+stream = ExtResource("3_f6w1c")

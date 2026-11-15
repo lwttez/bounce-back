@@ -19,6 +19,12 @@ var placed: Array[Vector2] = []
 var player: CharacterBody2D
 var finished := false
 var spike_nodes: Array[Node] = []
+var heart_textures = [
+	preload("res://assets/UI/零命.png"),
+	preload("res://assets/UI/一顆愛心.png"),
+	preload("res://assets/UI/兩顆愛心.png"),
+	preload("res://assets/UI/三顆愛心.png"),
+]
 
 
 func _ready() -> void:
@@ -167,3 +173,10 @@ func _spawn(scene: PackedScene, count: int) -> void:
 		n.position = p
 		add_child(n)
 		made += 1
+		
+func _process(_delta):
+	if player == null:
+		return
+	var n = player.get("lives")
+	if n != null:
+		$UI/Hearts.texture = heart_textures[clampi(n, 0, 3)]

@@ -8,5 +8,6 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	$AnimatedSprite2D.play("bounce")
+	$SpringSound.play()
 	if "velocity" in body:
 		body.velocity = Vector2.UP.rotated(global_rotation) * bounce_force
