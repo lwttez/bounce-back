@@ -316,7 +316,7 @@ script = ExtResource("1_m48yy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1148761437]
 sprite_frames = SubResource("SpriteFrames_wwxi3")
 animation = &"bounce"
-frame_progress = 0.47278827
+frame_progress = 0.084464215
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1611425674]
 position = Vector2(0, -1)

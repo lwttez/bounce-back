@@ -1,6 +1,4 @@
 extends Node2D
-## 跳板物品欄：玩家可以在地圖內自由放置最多 8 個跳板，並調整角度。
-## 左鍵 放置　右鍵 收回滑鼠附近的跳板　滾輪 / Q E 旋轉　R 角度歸零
 
 const SPRING_SCENE := preload("res://scenes/spring.tscn")
 

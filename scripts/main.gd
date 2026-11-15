@@ -3,19 +3,17 @@ extends Node2D
 @export var coin_scene: PackedScene
 @export var spring_scene: PackedScene
 @export var coin_count := 8
-@export var spring_count := 0   # 跳板改由玩家用物品欄放置，不再隨機生成
+@export var spring_count := 0
 @export var area := Rect2(30, 30, 320, 200)
 @export var min_gap := 50.0
 
-# 尖刺：統一大小、隨機位置、隨機方向
-@export var spike_count := 5
-@export var spike_area := Rect2(50, 40, 300, 190)   # 尖刺可出現的範圍
-@export var spike_min_gap := 70.0                   # 尖刺之間的最小距離
-@export var spike_clear := 40.0                     # 與金幣、起點、終點保持的距離
-@export var respawn_spikes_on_death := true         # 每次死亡回到起點，尖刺重新隨機生成 5 個
+@export var spike_count := 3
+@export var spike_area := Rect2(50, 40, 300, 190)
+@export var spike_min_gap := 70.0
+@export var spike_clear := 40.0
+@export var respawn_spikes_on_death := true
 
-# 地圖與起點終點
-@export var floor_y := 250.0                        # 地面高度（腳踩的位置）
+@export var floor_y := 250.0
 @export var start_pos := Vector2(30, 250)
 @export var goal_pos := Vector2(370, 250)
 
@@ -27,7 +25,6 @@ var spike_nodes: Array[Node] = []
 
 func _ready() -> void:
 	randomize()
-	# 鏡頭：把 400x300 的地圖放大填滿 800x600 的畫面
 	var cam := Camera2D.new()
 	cam.position = Vector2(200, 150)
 	cam.zoom = Vector2(2, 2)
@@ -41,18 +38,16 @@ func _ready() -> void:
 	_spawn_spikes()
 	_make_start_and_goal()
 	_make_player()
-	add_child(preload("res://scripts/placer.gd").new())   # 跳板物品欄（8 個）
+	add_child(preload("res://scripts/placer.gd").new())
 
 
 func _make_walls() -> void:
-	# 看不見的地板、牆壁和天花板，讓玩家不會掉出地圖
 	var body := StaticBody2D.new()
 	add_child(body)
-	_add_wall(body, Vector2(200, floor_y + 25), Vector2(440, 50))   # 地板
-	_add_wall(body, Vector2(-10, 150), Vector2(20, 400))            # 左牆
-	_add_wall(body, Vector2(410, 150), Vector2(20, 400))            # 右牆
-	_add_wall(body, Vector2(200, -10), Vector2(440, 20))            # 天花板
-
+	_add_wall(body, Vector2(200, floor_y + 25), Vector2(440, 50))
+	_add_wall(body, Vector2(-10, 150), Vector2(20, 400))
+	_add_wall(body, Vector2(410, 150), Vector2(20, 400))
+	_add_wall(body, Vector2(200, -10), Vector2(440, 20))
 
 func _add_wall(body: StaticBody2D, pos: Vector2, size: Vector2) -> void:
 	var cs := CollisionShape2D.new()
@@ -61,7 +56,6 @@ func _add_wall(body: StaticBody2D, pos: Vector2, size: Vector2) -> void:
 	cs.shape = shape
 	cs.position = pos
 	body.add_child(cs)
-
 
 func _make_start_and_goal() -> void:
 	var start := Node2D.new()
@@ -75,9 +69,7 @@ func _make_start_and_goal() -> void:
 	add_child(goal)
 	goal.connect("reached", _on_goal_reached)
 
-
 func _make_player() -> void:
-	# 有史萊姆場景（和它的美術素材）就用史萊姆，沒有就用內建的方塊角色
 	var slime_scene: PackedScene = null
 	if ResourceLoader.exists("res://scenes/slime.tscn"):
 		slime_scene = load("res://scenes/slime.tscn") as PackedScene
@@ -85,20 +77,15 @@ func _make_player() -> void:
 	if slime_scene != null:
 		player = slime_scene.instantiate() as CharacterBody2D
 		foot = 5.0
-	else:
-		player = CharacterBody2D.new()
-		player.set_script(preload("res://scripts/player.gd"))
 	player.set("start_position", start_pos)
 	player.position = start_pos + Vector2(0, -foot)
 	if player.has_signal("died"):
 		player.connect("died", _on_player_died)
 	add_child(player)
 
-
 func _on_player_died() -> void:
 	if respawn_spikes_on_death:
 		call_deferred("_respawn_spikes")
-
 
 func _respawn_spikes() -> void:
 	for s in spike_nodes:
@@ -115,7 +102,7 @@ func _on_goal_reached() -> void:
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	var lab := Label.new()
-	lab.text = "到達終點！"
+	lab.text = "goal!"
 	lab.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	lab.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lab.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -133,9 +120,8 @@ func _spawn_spikes() -> void:
 		return
 	var spikes: Array[Vector2] = []
 	var tries := 0
-	var gap := spike_min_gap      # 尖刺之間的距離
-	var clear := spike_clear      # 與金幣、起點、終點的距離
-	# 保證生成 spike_count 根：位置太擠時，會逐步放寬間距
+	var gap := spike_min_gap
+	var clear := spike_clear
 	while spikes.size() < spike_count and tries < 3000:
 		tries += 1
 		if tries % 200 == 0:
@@ -149,7 +135,7 @@ func _spawn_spikes() -> void:
 			if p.distance_to(q) < gap:
 				ok = false
 				break
-		for c in placed:               # 不要壓到金幣、起點、終點
+		for c in placed:
 			if p.distance_to(c) < clear:
 				ok = false
 				break
@@ -158,10 +144,9 @@ func _spawn_spikes() -> void:
 		spikes.append(p)
 		var s := scene.instantiate() as Node2D
 		s.position = p
-		s.rotation_degrees = float(randi_range(0, 11)) * 15.0   # 隨機方向（每 15° 一格）
+		s.rotation_degrees = float(randi_range(0, 11)) * 15.0
 		add_child(s)
 		spike_nodes.append(s)
-
 
 func _spawn(scene: PackedScene, count: int) -> void:
 	if scene == null:
@@ -185,10 +170,3 @@ func _spawn(scene: PackedScene, count: int) -> void:
 		n.position = p
 		add_child(n)
 		made += 1
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# F11 切換全螢幕
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F11:
-		var fs := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if fs else DisplayServer.WINDOW_MODE_FULLSCREEN)
