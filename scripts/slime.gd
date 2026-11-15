@@ -9,6 +9,7 @@ signal died
 @export var foot_offset: float = 5.0     # 腳底到中心的距離（用來對齊起點）
 
 var start_position := Vector2.ZERO
+var lives = 3
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("bounce") and is_on_floor():
 		velocity.y = jump_velocity
+		$JumpSound.play()
 
 	var direction: float = Input.get_axis("move-left", "move-right")
 	if direction != 0:
@@ -51,9 +53,18 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("idle")
 
 	move_and_slide()
+	if is_on_floor() and absf(velocity.x) > 10:
+		if not $walk.playing:
+			$walk.play()
+		else:
+			$walk.stop()
 
 
 func die() -> void:
+	lives -= 1
+	if lives <= 0:
+		get_tree().call_deferred("reload_current_scene")
+	$HurtSound.play()
 	died.emit()
 	call_deferred("_respawn")
 

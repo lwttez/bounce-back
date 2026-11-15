@@ -64,7 +64,12 @@
 [ext_resource type="Texture2D" uid="uid://kd8cox72tyxh" path="res://art/Slime_Pixel_Monsters_Vol_1_BLACK_OUTLINE/frames/cyan/walk/walk_02.png" id="63_ie7sy"]
 [ext_resource type="Texture2D" uid="uid://lcgho6vqny4a" path="res://art/Slime_Pixel_Monsters_Vol_1_BLACK_OUTLINE/frames/cyan/walk/walk_03.png" id="64_58hkc"]
 [ext_resource type="Texture2D" uid="uid://cx16fpw43nli6" path="res://art/Slime_Pixel_Monsters_Vol_1_BLACK_OUTLINE/frames/cyan/walk/walk_04.png" id="65_b683l"]
+[ext_resource type="AudioStream" uid="uid://dyv3qnq3xt6p3" path="res://audio/jump.mp3" id="66_03wpl"]
 [ext_resource type="Texture2D" uid="uid://belf8pw4tgynm" path="res://art/Slime_Pixel_Monsters_Vol_1_BLACK_OUTLINE/frames/cyan/walk/walk_05.png" id="66_ojl5g"]
+[ext_resource type="AudioStream" uid="uid://ckdrom2p5g18t" path="res://audio/hurt.mp3" id="67_spjol"]
+[ext_resource type="AudioStream" uid="uid://bdi4lje8n7nnx" path="res://audio/low_walk.mp3" id="68_3ouno"]
+[ext_resource type="AudioStream" uid="uid://be7h56ja1ollr" path="res://audio/win.mp3" id="69_jvq7p"]
+[ext_resource type="AudioStream" uid="uid://c1f6ekce3rl73" path="res://audio/walk.mp3" id="70_npop4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wwxi3"]
 animations = [{
@@ -322,3 +327,20 @@ frame_progress = 0.47278827
 position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ge73t")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=861656964]
+stream = ExtResource("66_03wpl")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1987409368]
+stream = ExtResource("67_spjol")
+
+[node name="LowWalkSound" type="AudioStreamPlayer2D" parent="." unique_id=1272110280]
+stream = ExtResource("68_3ouno")
+volume_db = -8.0
+
+[node name="win" type="AudioStreamPlayer2D" parent="." unique_id=432192405]
+stream = ExtResource("69_jvq7p")
+
+[node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=582500715]
+stream = ExtResource("70_npop4")
+volume_db = -0.8
